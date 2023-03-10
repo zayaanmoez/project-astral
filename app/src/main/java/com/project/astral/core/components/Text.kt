@@ -10,27 +10,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
-import com.project.astral.core.utils.astralFont
+import com.project.astral.core.utils.regularFont
 
 @Composable
 fun Text(
-    modifier: Modifier = Modifier,
     text: String,
+    font: FontFamily = regularFont(),
     fontSize: TextUnit = 12.sp,
-    font: FontFamily = astralFont(),
     fontWeight: FontWeight = FontWeight.Normal,
     color: Color = MaterialTheme.colorScheme.secondary,
     letterSpacing: TextUnit = 0.5.sp,
     textAlign: TextAlign = TextAlign.Start,
+    modifier: Modifier = Modifier,
 ) {
     Text(
         text = text,
-        fontSize = fontSize,
-        color = color,
         fontFamily = font,
+        fontSize = fontSize,
         fontWeight = fontWeight,
-        textAlign = textAlign,
+        color = color,
         letterSpacing = letterSpacing,
+        textAlign = textAlign,
         modifier = modifier
     )
 }

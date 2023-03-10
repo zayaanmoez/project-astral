@@ -1,4 +1,4 @@
-package com.project.astral.navigation
+package com.project.astral.core.domain
 
 import com.project.astral.R
 
