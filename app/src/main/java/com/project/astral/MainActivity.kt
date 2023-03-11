@@ -20,17 +20,18 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.project.astral.core.domain.NavItem
 import com.project.astral.core.utils.regularFont
-import com.project.astral.features.NewsScreen
 import com.project.astral.features.explore.ExploreScreen
 import com.project.astral.features.fleet.FleetScreen
 import com.project.astral.features.home.HomeScreen
 import com.project.astral.features.launch.LaunchScreen
+import com.project.astral.features.news.NewsScreen
 import com.project.astral.features.settings.SettingsScreen
 import com.project.astral.ui.theme.AstralTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -45,84 +46,84 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MainScreenView(){
-    val navController = rememberNavController()
-    Scaffold(
-        bottomBar = { BottomNavigation(navController = navController) }
-    ) {
-        Box(modifier = Modifier.padding(it)) {
-            NavigationGraph(navController = navController)
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun MainScreenView(){
+        val navController = rememberNavController()
+        Scaffold(
+            bottomBar = { BottomNavigation(navController = navController) }
+        ) {
+            Box(modifier = Modifier.padding(it)) {
+                NavigationGraph(navController = navController)
+            }
         }
     }
-}
 
-@Composable
-fun BottomNavigation(navController: NavController) {
-    val items = listOf(
-        NavItem.Home,
-        NavItem.News,
-        NavItem.SpaceFlights,
-        NavItem.SpaceFleet,
-        NavItem.Explore,
-    )
-    NavigationBar() {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-        items.forEach { item ->
-            NavigationBarItem(
-                icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
-                label = { com.project.astral.core.components.Text(text = item.title, font = regularFont()) },
-                alwaysShowLabel = true,
-                selected = currentRoute == item.screen_route,
-                onClick = {
-                    navController.navigate(item.screen_route) {
+    @Composable
+    fun BottomNavigation(navController: NavController) {
+        val items = listOf(
+            NavItem.Home,
+            NavItem.News,
+            NavItem.SpaceFlights,
+            NavItem.SpaceFleet,
+            NavItem.Explore,
+        )
+        NavigationBar() {
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentRoute = navBackStackEntry?.destination?.route
+            items.forEach { item ->
+                NavigationBarItem(
+                    icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
+                    label = { com.project.astral.core.components.Text(text = item.title, font = regularFont()) },
+                    alwaysShowLabel = true,
+                    selected = currentRoute == item.screen_route,
+                    onClick = {
+                        navController.navigate(item.screen_route) {
 
-                        navController.graph.startDestinationRoute?.let { screen_route ->
-                            popUpTo(screen_route) {
-                                saveState = true
+                            navController.graph.startDestinationRoute?.let { screen_route ->
+                                popUpTo(screen_route) {
+                                    saveState = true
+                                }
                             }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
                     }
-                }
-            )
+                )
+            }
         }
     }
-}
 
-@Composable
-fun NavigationGraph(navController: NavHostController) {
-    NavHost(navController, startDestination = NavItem.Home.screen_route) {
-        composable(NavItem.Home.screen_route) {
-            HomeScreen()
-        }
-        composable(NavItem.News.screen_route) {
-            NewsScreen()
-        }
-        composable(NavItem.SpaceFlights.screen_route) {
-            LaunchScreen()
-        }
-        composable(NavItem.SpaceFleet.screen_route) {
-            FleetScreen()
-        }
-        composable(NavItem.Explore.screen_route) {
-            ExploreScreen()
-        }
-        composable(NavItem.Settings.screen_route) {
-            SettingsScreen()
+    @Composable
+    fun NavigationGraph(navController: NavHostController) {
+        NavHost(navController, startDestination = NavItem.Home.screen_route) {
+            composable(NavItem.Home.screen_route) {
+                HomeScreen()
+            }
+            composable(NavItem.News.screen_route) {
+                NewsScreen()
+            }
+            composable(NavItem.SpaceFlights.screen_route) {
+                LaunchScreen()
+            }
+            composable(NavItem.SpaceFleet.screen_route) {
+                FleetScreen()
+            }
+            composable(NavItem.Explore.screen_route) {
+                ExploreScreen()
+            }
+            composable(NavItem.Settings.screen_route) {
+                SettingsScreen()
+            }
         }
     }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    AstralTheme {
-        MainScreenView()
+    @Preview(showBackground = true)
+    @Composable
+    fun DefaultPreview() {
+        AstralTheme {
+            MainScreenView()
+        }
     }
 }

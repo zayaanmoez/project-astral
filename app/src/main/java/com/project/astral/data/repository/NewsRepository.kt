@@ -1,8 +1,8 @@
 package com.project.astral.data.repository
 
+import android.util.Log
 import com.project.astral.api.NewsService
 import com.project.astral.api.SpaceflightService
-import com.project.astral.core.domain.Result
 import com.project.astral.data.models.Article
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,7 +18,7 @@ class NewsRepository @Inject constructor(
             try {
                 val spaceflightResponse = spaceflightService.getArticles(params.pageSize, params.getStart())
 
-                articlesListLiveData.addAll(spaceflightResponse.map { it ->
+                articlesListLiveData.addAll(spaceflightResponse.map {
                     Article(
                         id = it.id,
                         title = it.title,
@@ -29,14 +29,10 @@ class NewsRepository @Inject constructor(
                         source = it.newsSite,
                     )
                 })
-
                 emit(articlesListLiveData)
             } catch (e: Exception) {
-                emit(articlesListLiveData)
+                Log.e("NewsRepository", e.toString())
             }
-
-
-            emit(articlesListLiveData)
         }
     }
 

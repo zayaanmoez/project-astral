@@ -14,12 +14,12 @@ data class SpaceflightArticle(
     @field:SerializedName("events") val events : List<Events>,
 ) {
     data class Launches(
-        @field:SerializedName("id") val id: Int,
-        @field:SerializedName("provider") val provider: Int,
+        @field:SerializedName("id") val id: String,
+        @field:SerializedName("provider") val provider: String,
     )
 
     data class Events(
-        @field:SerializedName("id") val id: Int,
-        @field:SerializedName("provider") val provider: Int,
+        @field:SerializedName("id") val id: String,
+        @field:SerializedName("provider") val provider: String,
     )
 }
