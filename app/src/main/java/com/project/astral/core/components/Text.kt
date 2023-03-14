@@ -19,7 +19,7 @@ fun Text(
     font: FontFamily = regularFont(),
     fontSize: TextUnit = 12.sp,
     fontWeight: FontWeight = FontWeight.Normal,
-    color: Color = MaterialTheme.colorScheme.secondary,
+    color: Color = MaterialTheme.colorScheme.onPrimary,
     lineHeight: TextUnit = 10.sp,
     textAlign: TextAlign = TextAlign.Start,
     modifier: Modifier = Modifier,

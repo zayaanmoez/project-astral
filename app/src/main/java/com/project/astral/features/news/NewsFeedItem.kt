@@ -22,38 +22,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.project.astral.core.components.Text
+import com.project.astral.core.utils.astralFont
 import com.project.astral.data.models.Article
 import kotlin.text.Typography.middleDot
 
 @Composable
 fun NewsFeedItem(
     article: Article,
-//    onItemClicked: (Int) -> Unit
+    showWebViewer: (String) -> Unit
 ) {
     Card(
         modifier = Modifier
             .width(400.dp)
-            .wrapContentSize(),
-//            .padding(12.dp)
-//            .clip(
-//                CutCornerShape(
-//                    topEnd = 6.dp, bottomStart = 18.dp,
-//                    topStart = 6.dp, bottomEnd = 6.dp
-//                ),
-//            )
-//            .clickable(
-//                interactionSource = MutableInteractionSource(),
-//                indication = rememberRipple(bounded = true),
-//                onClick = {
-//                    onItemClicked(rocket.id.toInt())
-//                }
-//            ),
-        border = BorderStroke(
-            width = 1.dp,
-            brush = Brush.verticalGradient(
-                colors = listOf(Color.Transparent, MaterialTheme.colorScheme.inversePrimary)
-            )
-        ),
+            .wrapContentSize()
+            .clickable(
+                interactionSource = MutableInteractionSource(),
+                indication = rememberRipple(bounded = true),
+                onClick = {
+                    showWebViewer(article.url)
+                }
+            ),
     ) {
         Column(
             modifier = Modifier
@@ -63,7 +51,7 @@ fun NewsFeedItem(
                 model = article.imageUrl,
                 contentDescription= article.title,
                 Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(1f)
             )
             Column(
                 modifier = Modifier
@@ -72,21 +60,22 @@ fun NewsFeedItem(
                 Text(
                     text = article.title,
                     fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.padding(top = 5.dp)
                 )
                 Text(
                     text = "${article.source} $middleDot ${article.getPublishedDuration()}",
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.ExtraBold,
                     fontSize = 15.sp,
-
+                    modifier = Modifier.padding(top = 5.dp)
                 )
-                Spacer(modifier = Modifier.height(5.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = article.summary,
                     fontSize = 17.sp,
                 )
             }
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(30.dp))
         }
     }
 }

@@ -18,22 +18,26 @@ data class Article(
     fun getPublishedDuration(): String {
         val odtPublished = OffsetDateTime.parse(publishedAt)
         val odtNow = OffsetDateTime.now(odtPublished.offset)
-        return odtPublished.toZonedDateTime().format(
+
+        /* Formatted date
+        return odtPublished.atZoneSameInstant(ZoneId.systemDefault()).format(
             DateTimeFormatter.ofPattern("MMM dd, hh:mm a")
         )
-//        // Period since published
-//        val period = Period.between(odtPublished.toLocalDate(), odtNow.toLocalDate())
-//
-//        // Duration since published
-//        val duration = Duration.between(odtPublished, odtNow)
-//
-//        return if (period.months > 1)
-//            period.months.toString() + "M"
-//        else if (period.days > 1)
-//            period.days.toString() + "d"
-//        else if (duration.toHours() > 1)
-//            duration.toHours().toString() + "d"
-//        else
-//            duration.toMinutes().toString() + "m"
+        */
+
+        // Period since published
+        val period = Period.between(odtPublished.toLocalDate(), odtNow.toLocalDate())
+
+        // Duration since published
+        val duration = Duration.between(odtPublished, odtNow)
+
+        return if (period.months > 0)
+            period.months.toString() + "M"
+        else if (period.days > 0)
+            period.days.toString() + "d"
+        else if (duration.toHours() > 0)
+            duration.toHours().toString() + "h"
+        else
+            duration.toMinutes().toString() + "m"
     }
 }
