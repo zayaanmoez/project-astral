@@ -7,9 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.project.astral.data.models.Article
 import com.project.astral.data.repository.NewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,15 +23,22 @@ class NewsViewModel @Inject constructor(
         loadArticles()
     }
 
-    fun loadArticles() {
+    fun loadArticles(onLoad: () -> Unit = {}) {
         viewModelScope.launch {
             newsRepository.loadArticles(loadParams).collect {
                 val updatedFeed = _articleList.value?.toMutableSet()
                 updatedFeed?.addAll(it)
                 _articleList.value = updatedFeed?.toList()
                 loadParams.page += 1
+                onLoad()
             }
         }
+    }
+
+    fun reloadArticles(onLoad: () -> Unit = {}) {
+        loadParams.page = 0
+        _articleList.value = mutableListOf()
+        loadArticles(onLoad)
     }
 
 }

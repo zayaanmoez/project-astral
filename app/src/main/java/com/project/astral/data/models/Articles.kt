@@ -7,7 +7,6 @@ import java.time.Duration
 import java.time.format.DateTimeFormatter
 
 data class Article(
-    val id: Int,
     val title: String,
     val url: String,
     val imageUrl: String,
@@ -17,7 +16,7 @@ data class Article(
 ) {
     fun getPublishedDuration(): String {
         val odtPublished = OffsetDateTime.parse(publishedAt)
-        val odtNow = OffsetDateTime.now(odtPublished.offset)
+        val odtNow = OffsetDateTime.now()
 
         /* Formatted date
         return odtPublished.atZoneSameInstant(ZoneId.systemDefault()).format(
@@ -31,11 +30,11 @@ data class Article(
         // Duration since published
         val duration = Duration.between(odtPublished, odtNow)
 
-        return if (period.months > 0)
+        return if (period.months >= 1)
             period.months.toString() + "M"
-        else if (period.days > 0)
+        else if (period.days >= 1)
             period.days.toString() + "d"
-        else if (duration.toHours() > 0)
+        else if (duration.toHours() >= 1)
             duration.toHours().toString() + "h"
         else
             duration.toMinutes().toString() + "m"

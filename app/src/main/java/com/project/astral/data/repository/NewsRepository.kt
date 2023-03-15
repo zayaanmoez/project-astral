@@ -17,10 +17,8 @@ class NewsRepository @Inject constructor(
             val articlesListLiveData: MutableList<Article> = mutableListOf<Article>();
             try {
                 val spaceflightResponse = spaceflightService.getArticles(params.pageSize, params.getStart())
-
                 articlesListLiveData.addAll(spaceflightResponse.map {
                     Article(
-                        id = it.id,
                         title = it.title,
                         url = it.url,
                         imageUrl = it.imageUrl,
@@ -29,10 +27,30 @@ class NewsRepository @Inject constructor(
                         source = it.newsSite,
                     )
                 })
-                emit(articlesListLiveData)
             } catch (e: Exception) {
                 Log.e("NewsRepository", e.toString())
             }
+
+//            try {
+//                val newsApiResponse = newsService.getArticles(params.pageSize, params.page)
+//                articlesListLiveData.addAll(newsApiResponse.articles.map {
+//                    Article(
+//                        title = it.title,
+//                        url = it.url,
+//                        imageUrl = it.urlToImage ?: "",
+//                        summary = it.description ?: "",
+//                        publishedAt = it.publishedAt,
+//                        source = it.source.name,
+//                    )
+//                })
+//            } catch (e: Exception) {
+//                Log.e("NewsRepository", e.toString())
+//            }
+
+            articlesListLiveData.sortByDescending {
+                it.publishedAt
+            }
+            emit(articlesListLiveData)
         }
     }
 
