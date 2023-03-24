@@ -1,8 +1,6 @@
 package com.project.astral.di
 
-import com.project.astral.api.LaunchService
-import com.project.astral.api.NewsService
-import com.project.astral.api.SpaceflightService
+import com.project.astral.api.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,5 +27,11 @@ class NetworkModule {
     @Provides
     fun provideLaunchService(): LaunchService {
         return LaunchService.create()
+    }
+
+    @Singleton
+    @Provides
+    fun provideApodService(): NasaService {
+        return NasaService.create()
     }
 }

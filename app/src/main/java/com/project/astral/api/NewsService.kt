@@ -12,7 +12,7 @@ import retrofit2.http.Query
 
 interface NewsService {
 
-    @GET("top-headlines?category=science")
+    @GET("top-headlines")
     suspend fun getArticles(
         @Query("pageSize") pageSize: Int,
         @Query("page") page: Int,
