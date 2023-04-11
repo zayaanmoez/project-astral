@@ -31,21 +31,21 @@ class NewsRepository @Inject constructor(
                 Log.e("NewsRepository", e.toString())
             }
 
-//            try {
-//                val newsApiResponse = newsService.getArticles(params.pageSize, params.page)
-//                articlesListLiveData.addAll(newsApiResponse.articles.map {
-//                    Article(
-//                        title = it.title,
-//                        url = it.url,
-//                        imageUrl = it.urlToImage ?: "",
-//                        summary = it.description ?: "",
-//                        publishedAt = it.publishedAt,
-//                        source = it.source.name,
-//                    )
-//                })
-//            } catch (e: Exception) {
-//                Log.e("NewsRepository", e.toString())
-//            }
+            try {
+                val newsApiResponse = newsService.getArticles(params.pageSize, params.page)
+                articlesListLiveData.addAll(newsApiResponse.articles.map {
+                    Article(
+                        title = it.title,
+                        url = it.url,
+                        imageUrl = it.urlToImage ?: "",
+                        summary = it.description ?: "",
+                        publishedAt = it.publishedAt,
+                        source = it.source.name,
+                    )
+                })
+            } catch (e: Exception) {
+                Log.e("NewsRepository", e.toString())
+            }
 
             articlesListLiveData.sortByDescending {
                 it.publishedAt

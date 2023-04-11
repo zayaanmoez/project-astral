@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Path
 
 interface SpaceflightService {
 
@@ -15,6 +16,11 @@ interface SpaceflightService {
     suspend fun getArticles(
         @Query("_limit") limit: Int,
         @Query("_start") start: Int,
+    ) : List<SpaceflightArticle>
+
+    @GET("articles/launch/{id}")
+    suspend fun getLaunchArticles(
+        @Path("id") id: String,
     ) : List<SpaceflightArticle>
 
     companion object {

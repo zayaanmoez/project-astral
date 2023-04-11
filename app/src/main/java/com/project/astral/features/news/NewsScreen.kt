@@ -34,7 +34,7 @@ fun NewsScreen(newsViewModel: NewsViewModel = hiltViewModel()) {
     var showWebView by rememberSaveable { mutableStateOf(false) }
     var webViewUrl by rememberSaveable { mutableStateOf("") }
     val refreshScope = rememberCoroutineScope()
-    var refreshing by remember { mutableStateOf(false) }
+    var refreshing by rememberSaveable { mutableStateOf(false) }
 
     // Reload data on pull refresh
     val refreshState = rememberPullRefreshState(

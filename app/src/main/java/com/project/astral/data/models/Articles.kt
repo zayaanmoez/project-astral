@@ -18,12 +18,6 @@ data class Article(
         val odtPublished = OffsetDateTime.parse(publishedAt)
         val odtNow = OffsetDateTime.now()
 
-        /* Formatted date
-        return odtPublished.atZoneSameInstant(ZoneId.systemDefault()).format(
-            DateTimeFormatter.ofPattern("MMM dd, hh:mm a")
-        )
-        */
-
         // Period since published
         val period = Period.between(odtPublished.toLocalDate(), odtNow.toLocalDate())
 
