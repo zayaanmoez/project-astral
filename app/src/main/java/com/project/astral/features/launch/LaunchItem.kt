@@ -17,13 +17,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.project.astral.R
-import com.project.astral.core.components.Text
+import com.project.astral.common.components.Text
 import com.project.astral.features.launch.components.LaunchStatusChip
 
 @Composable
 fun LaunchItem(
     launch: Launch,
-    showDetails: (Launch) -> Unit
+    showDetails: (Launch) -> Unit,
+    showWebViewer: (String) -> Unit,
+    showVideoViewer: (String) -> Unit
 ) {
     ElevatedCard(
         colors = CardDefaults.cardColors(
@@ -86,13 +88,30 @@ fun LaunchItem(
                     textAlign = TextAlign.Center,
                 )
                 Spacer(modifier = Modifier.height(15.dp))
-                Button(onClick = { /*TODO*/ }) {
-                    Icon(
-                        painterResource( id = R.drawable.baseline_play_circle_24 ),
-                        contentDescription = "Play Video"
-                    )
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(text = "WATCH", fontSize = 15.sp)
+                Row(
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    if (launch.videURLs.isNotEmpty()) {
+                        Button(onClick = { showVideoViewer(launch.videURLs[0].url) }) {
+                            Icon(
+                                painterResource( id = R.drawable.baseline_play_circle_24 ),
+                                contentDescription = "Play Video"
+                            )
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(text = "WATCH", fontSize = 15.sp)
+                        }
+                        Spacer(modifier = Modifier.width(15.dp))
+                    }
+                    if (launch.infoURLs.isNotEmpty()) {
+                        Button(onClick = { showWebViewer(launch.infoURLs[0].url) }) {
+                            Icon(
+                                painterResource( id = R.drawable.baseline_info_24 ),
+                                contentDescription = "More Info"
+                            )
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(text = "MORE INFO", fontSize = 15.sp)
+                        }
+                    }
                 }
                 Spacer(modifier = Modifier.height(15.dp))
             }

@@ -10,8 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import com.project.astral.core.components.Text
-import com.project.astral.core.utils.astralFont
+import com.project.astral.common.components.Text
+import com.project.astral.common.utils.astralFont
 
 @Composable
 fun SettingsScreen() {

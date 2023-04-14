@@ -1,4 +1,4 @@
-package com.project.astral.core.domain
+package com.project.astral.common.domain
 
 sealed class Result<T> {
 

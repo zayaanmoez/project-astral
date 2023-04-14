@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.project.astral.core.components.Text
-import com.project.astral.core.utils.astralFont
+import com.project.astral.common.components.Text
+import com.project.astral.common.utils.astralFont
 import com.project.astral.data.models.Article
 import com.project.astral.features.news.NewsFeedItem
 

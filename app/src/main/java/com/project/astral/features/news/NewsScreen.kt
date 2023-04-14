@@ -18,10 +18,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.project.astral.core.components.Text
-import com.project.astral.core.components.WebViewer
-import com.project.astral.core.utils.astralFont
-import com.project.astral.core.utils.isScrolledToTheEnd
+import com.project.astral.common.components.Text
+import com.project.astral.common.components.WebViewer
+import com.project.astral.common.utils.astralFont
+import com.project.astral.common.utils.isScrolledToTheEnd
 import com.project.astral.viewmodels.NewsViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

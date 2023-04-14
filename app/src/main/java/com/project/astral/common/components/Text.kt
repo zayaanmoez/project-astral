@@ -1,4 +1,4 @@
-package com.project.astral.core.components
+package com.project.astral.common.components
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -7,11 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
-import com.project.astral.core.utils.regularFont
+import com.project.astral.common.utils.regularFont
 
 @Composable
 fun Text(
@@ -20,7 +19,6 @@ fun Text(
     fontSize: TextUnit = 12.sp,
     fontWeight: FontWeight = FontWeight.Normal,
     color: Color = MaterialTheme.colorScheme.onPrimary,
-    lineHeight: TextUnit = 10.sp,
     textAlign: TextAlign = TextAlign.Start,
     modifier: Modifier = Modifier,
 ) {

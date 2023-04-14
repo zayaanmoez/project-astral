@@ -16,6 +16,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection|uiMode"
             android:label="@string/app_name"
             android:theme="@style/Theme.Astral">
             <intent-filter>
@@ -24,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCQ6EhpekMF1kLVxtj9YOrVs84Mh7sOt3k"/>
     </application>
 
 </manifest>

@@ -7,6 +7,8 @@ data class Pad(
     @field:SerializedName("url") val url: String,
     @field:SerializedName("name") val name: String?,
     @field:SerializedName("map_url") val map_url: String?,
+    @field:SerializedName("info_url") val info_url: String?,
+    @field:SerializedName("wiki_url") val wiki_url: String?,
     @field:SerializedName("latitude") val latitude: String?,
     @field:SerializedName("longitude") val longitude: String?,
     @field:SerializedName("location") val location: Location,

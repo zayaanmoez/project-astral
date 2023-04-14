@@ -18,8 +18,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.project.astral.core.domain.NavItem
-import com.project.astral.core.utils.regularFont
+import com.project.astral.common.domain.NavItem
+import com.project.astral.common.utils.regularFont
 import com.project.astral.features.explore.ExploreScreen
 import com.project.astral.features.fleet.FleetScreen
 import com.project.astral.features.home.HomeScreen
@@ -65,9 +65,7 @@ class MainActivity : ComponentActivity() {
         val items = listOf(
             NavItem.Home,
             NavItem.News,
-            NavItem.SpaceFlights,
-            NavItem.SpaceFleet,
-            NavItem.Explore,
+            NavItem.SpaceFlights
         )
         NavigationBar() {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -75,7 +73,7 @@ class MainActivity : ComponentActivity() {
             items.forEach { item ->
                 NavigationBarItem(
                     icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
-                    label = { com.project.astral.core.components.Text(text = item.title, font = regularFont()) },
+                    label = { com.project.astral.common.components.Text(text = item.title, font = regularFont()) },
                     alwaysShowLabel = true,
                     selected = currentRoute == item.screen_route,
                     onClick = {

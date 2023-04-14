@@ -24,9 +24,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.project.astral.core.components.Text
-import com.project.astral.core.utils.astralFont
-import com.project.astral.core.utils.isScrolledToTheEnd
+import com.project.astral.common.components.Text
+import com.project.astral.common.components.VideoViewer
+import com.project.astral.common.components.WebViewer
+import com.project.astral.common.utils.astralFont
+import com.project.astral.common.utils.isScrolledToTheEnd
 import com.project.astral.data.models.launch.Launch
 import com.project.astral.viewmodels.LaunchViewModel
 import kotlinx.coroutines.delay
@@ -38,6 +40,14 @@ fun LaunchScreen(launchViewModel: LaunchViewModel = hiltViewModel()) {
     val pastLaunches by launchViewModel.pastLaunchList.observeAsState()
     val upcomingLaunches by launchViewModel.upcomingLaunchList.observeAsState()
     val scrollState = rememberLazyListState()
+
+    // Web viewer state
+    var showWebView by rememberSaveable { mutableStateOf(false) }
+    var webViewUrl by rememberSaveable { mutableStateOf("") }
+
+    // Video Viewer state
+    var showVideoView by rememberSaveable { mutableStateOf(false) }
+    var videoUrl by rememberSaveable { mutableStateOf("") }
 
     // Tabs for past/upcoming launches
     var state by rememberSaveable { mutableStateOf(0) }
@@ -122,10 +132,21 @@ fun LaunchScreen(launchViewModel: LaunchViewModel = hiltViewModel()) {
                     }
                 } else {
                     items(it) {launch ->
-                        LaunchItem(launch, showDetails = { launch ->
-                            showDetailsView = true
-                            launchId = launch.id
-                        })
+                        LaunchItem(
+                            launch = launch,
+                            showDetails = { launch ->
+                                showDetailsView = true
+                                launchId = launch.id
+                            },
+                            showWebViewer = { url ->
+                                showWebView = true
+                                webViewUrl = url
+                            },
+                            showVideoViewer = { url ->
+                                showVideoView = true
+                                videoUrl = url
+                            }
+                        )
                         Spacer(modifier = Modifier.height(15.dp))
                         Divider(modifier = Modifier.padding(horizontal = 20.dp))
                         Spacer(modifier = Modifier.height(15.dp))
@@ -163,5 +184,19 @@ fun LaunchScreen(launchViewModel: LaunchViewModel = hiltViewModel()) {
                 )
             }
         }
+    }
+
+    // WebView to sites for launch
+    if (showWebView) {
+        WebViewer(url = webViewUrl, showViewer = {
+            showWebView = it
+        })
+    }
+
+    // Video View to play videos
+    if (showVideoView) {
+        VideoViewer(url = videoUrl, showViewer = {
+            showVideoView = it
+        })
     }
 }

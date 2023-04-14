@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
-import com.project.astral.core.components.Text
+import com.project.astral.common.components.Text
 import com.project.astral.data.models.launch.Launch
 
 @Composable

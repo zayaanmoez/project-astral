@@ -13,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.project.astral.core.components.Text
+import com.project.astral.common.components.Text
 import com.project.astral.data.models.Article
 import kotlin.text.Typography.middleDot
 

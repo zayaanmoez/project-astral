@@ -3,7 +3,6 @@ package com.project.astral.features.home
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -17,8 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.project.astral.core.components.Text
-import com.project.astral.core.utils.astralFont
+import com.project.astral.common.components.Text
+import com.project.astral.common.utils.astralFont
 import com.project.astral.viewmodels.HomeViewModel
 import java.time.ZoneId
 import java.time.ZonedDateTime

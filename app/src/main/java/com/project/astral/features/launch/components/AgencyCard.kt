@@ -15,7 +15,7 @@ import com.project.astral.R
 import com.project.astral.data.models.launch.Agency
 
 @Composable
-fun AgencyCard(agency: Agency) {
+fun AgencyCard(agency: Agency, showWebViewer: (String) -> Unit) {
     ElevatedCard(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface,
@@ -75,13 +75,13 @@ fun AgencyCard(agency: Agency) {
                 }
                 agency.info_url?.let {
                     Spacer(modifier = Modifier.height(15.dp))
-                    Button(onClick = { /*TODO*/ }) {
+                    Button(onClick = { showWebViewer(it) }) {
                         Icon(
                             painterResource( id = R.drawable.baseline_info_24 ),
-                            contentDescription = "Play Video"
+                            contentDescription = "More Info"
                         )
                         Spacer(modifier = Modifier.width(5.dp))
-                        com.project.astral.core.components.Text(text = "More Info", fontSize = 15.sp)
+                        Text(text = "MORE INFO", fontSize = 15.sp)
                     }
                 }
                 Spacer(modifier = Modifier.height(15.dp))

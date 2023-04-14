@@ -1,4 +1,4 @@
-package com.project.astral.core.components
+package com.project.astral.common.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -40,7 +40,7 @@ fun WebViewer(url: String, showViewer: (Boolean) -> Unit) {
         Box(modifier = Modifier.padding(paddingValues)) {
             WebView(
                 state = state,
-                onCreated = { it.settings.javaScriptEnabled },
+                onCreated = { it.settings.javaScriptEnabled = true },
                 onDispose = {
                     showViewer(false)
                 },

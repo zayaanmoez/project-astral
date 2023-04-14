@@ -1,4 +1,4 @@
-package com.project.astral.core.utils
+package com.project.astral.common.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.Font
